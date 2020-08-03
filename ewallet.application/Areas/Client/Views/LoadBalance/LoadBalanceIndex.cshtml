@@ -1,0 +1,33 @@
+﻿@model ewallet.application.Models.LoadBalanceModel
+
+@{
+    ViewBag.Title = "LoadBalanceIndex";
+    Layout = "~/Areas/Client/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        @using (Html.BeginForm("LoadBalanceIndex", "LoadBalance", new { area = "Client" }, FormMethod.Post, new { @role = "form", @id = "LoadBalancePage" }))
+        {
+            @Html.AntiForgeryToken()
+            @*@Html.V()*@
+            @*@Html.HiddenFor(Model => Model.Type)*@
+            <fieldset class="mb-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.NTextBoxFor(model => model.amount, new { @class = "form-control", autocomplete = "off", @placeholder = "Amount", @onkeypress = "return isNumber(event)", @oninput = "checkValidation()" }, 1)
+                        <br />
+                    </div>
+                    <div class="col-md-2">&nbsp;</div>
+                </div>
+                <div class="col-lg-12">
+                    <button type="submit" class="btn btn-success btn-sm" id="ConfirmButton">Add <i class="icon-play3"></i></button>
+
+                </div>
+                <br />
+
+            </fieldset>
+        }
+    </div>
+</div>

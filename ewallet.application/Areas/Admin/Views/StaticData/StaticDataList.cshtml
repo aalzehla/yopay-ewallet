@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Static Data";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@Html.AntiForgeryToken()
+<div class="page-header">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Agent</span> - @Html.Raw(ViewData["Title"])</h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none py-0 mb-3 mb-md-0">
+            <div class="breadcrumb">
+                <a href="~/Admin/Home" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <span class="breadcrumb-item active">@Html.Raw(ViewData["Title"])</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" listing-container>
+    @Html.Raw(ViewData["grid"].ToString())
+</div>
+string sdatatypeId, string sdataid
+<script>
+    $('.icon-lock2').parent().on('click', function e() {
+        /*debugger*/;
+        let sdatatypeId = $(this).attr("data-val1");
+        let sdataid = $(this).attr("data-val");
+        let tId = $(this).closest("tr").attr("id");
+        jsonData = "{" +
+            "__RequestVerificationToken: '" + $('input[name="__RequestVerificationToken"]').val() + "'," +
+             "sdatatypeId:'" + sdatatypeId + "',sdataid:'"+sdataid+"'}";
+        var funcText = "CallAjaxDbResponse(" + jsonData + ",'/Admin/staticdata/DisableSData','POST',false,'window.location.reload();')";
+        showConfirmationModal("Are you sure you want to Block this Category?", funcText);
+    })
+    $('.icon-unlocked2').parent().on('click', function e() {
+       let sdatatypeId = $(this).attr("data-val1");
+        let sdataid = $(this).attr("data-val");
+        jsonData = "{" +
+            "__RequestVerificationToken: '" + $('input[name="__RequestVerificationToken"]').val() + "'," +
+            "sdatatypeId:'" + sdatatypeId + "',sdataid:'"+sdataid+"'}";
+        var funcText = "CallAjaxDbResponse(" + jsonData + ",'/Admin/staticdata/EnableSData','POST',false,'window.location.reload();')";
+        showConfirmationModal("Are you sure you want to Un-Block this Category?", funcText);
+    })
+</script>

@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "ActivityLog";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2" onclick="GoBack();"></i> <span class="font-weight-semibold">Activity Log</span> - @Html.Raw(ViewData["Title"])</h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none py-0 mb-3 mb-md-0">
+            <div class="breadcrumb">
+                <a href="~/Admin/Home" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <span class="breadcrumb-item active">@Html.Raw(ViewData["Title"])</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("ActivityLog", "Log", new { }, FormMethod.Post, new { @role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container" listing-container>
+        <div class="container card-body">
+            <div id="SearchField" class="col-md-6">
+                <label>Search For</label>
+                <input type="text" class="form-control" name="username" placeholder="User Name">
+            </div>
+            <br />
+            <div class="col-md-6">
+                <input type="submit" class="btn btn-primary" id="btnSearch" name="txtSearch" value="Search" />
+            </div>
+        </div>
+    </div>
+}
+
+@if (ViewData["grid"] != null)
+{
+    @Html.Raw(ViewData["grid"].ToString());
+}
+
+<script>
+    function isNumberKey(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+</script>

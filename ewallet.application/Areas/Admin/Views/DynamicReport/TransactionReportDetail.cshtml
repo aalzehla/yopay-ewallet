@@ -1,0 +1,42 @@
+﻿@model ewallet.application.Models.DynamicReportModel
+@{
+    ViewBag.Title = "TransactionReportDetail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{var BreadCum = ewallet.application.Library.ApplicationUtilities.GenerateBreadcum("Balance", "Report Detail");}
+@section BreadCum{
+    <style>
+        .pull-right {
+            float: right;
+            margin-left: auto;
+        }
+    </style>
+    @Html.Raw(BreadCum)
+}
+<div class="card">
+    <div class="card-body">
+        <fieldset class="mb-1" disabled>
+            <div class="row">
+                @Html.NTextBoxFor(model => model.TxnId, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.AgentId, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.ProductName, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.CompanyId, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.Company, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.TxnType, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.SubscriberNo, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.Amount, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.ServiceCharge, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.BonusAmount, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.Status, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.UserId, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.CreatedLocalDate, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.CreatedBy, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.AdminCommission, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.AgentCommission, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.ParentCommission, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.TxnRewardPoint, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+                @Html.NTextBoxFor(model => model.AdminRemarks, new { @class = "form-control", autocomplete = "off", @readonly = "readonly" }, 3,disable: true)
+            </div>
+        </fieldset>
+    </div>
+</div>

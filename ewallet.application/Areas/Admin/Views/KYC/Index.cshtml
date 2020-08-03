@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ewallet.shared.Models.KYC.KYCCommon>
+
+@{
+    ViewBag.Title = "Agent KYC ";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container" listing-container>
+    @Html.Raw(ViewData["grid"].ToString())
+</div>
+
+
+
+@section scripts
+{
+    <script>
+       
+    </script>
+}

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "FunctionPrivilege";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@{var BreadCum = ewallet.application.Library.ApplicationUtilities.GenerateBreadcum("Role", "Assign Functions", "");}
+@section BreadCum{
+    @Html.Raw(BreadCum)
+}
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title">Assign Functions</h5>
+    </div>
+    <div class="card-body">
+        @Html.AntiForgeryToken()
+        @using (Html.BeginForm("FunctionPrivilege", "Role", new { }, FormMethod.Post, new { @role = "form", @id = "assignprevilege", @class = "form-validate-jquery" }))
+        {
+            <div class="row">
+                @Html.AntiForgeryToken()
+                @Html.Hidden("RoleID", ViewData["RoleID"])
+                @Html.NCheckBoxGroupFor("FunctionList", ViewData["FunctionList"] as IEnumerable<SelectListItem>, 1)
+                <div class="col-lg-12">
+                    <button type="submit" class="btn btn-success btn-sm"><i class="icon-floppy-disk mr-2"></i> save</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

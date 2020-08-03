@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Commission Report";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2" onclick="GoBack();"></i> <span class="font-weight-semibold">Settlement Report</span> - @Html.Raw(ViewData["Title"])</h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none py-0 mb-3 mb-md-0">
+            <div class="breadcrumb">
+                <a href="~/Admin/Home" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <span class="breadcrumb-item active">@Html.Raw(ViewData["Title"])</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (@ViewBag.EmptyMessage == "True")
+{
+    <div class="alert bg-info alert-styled-left alert-dismissible">
+        <strong>No User Found </strong>
+    </div>
+}
+
+
+@using (Html.BeginForm("ManualCommissionReport", "DynamicReport", new { }, FormMethod.Post, new { @role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container" listing-container>
+        <div class="container card-body">
+            <div id="MobileNo" class="col-md-6">
+                <label>Mobile Number</label>
+                <input type="text" class="form-control" id="txtMobileNoID" name="mobileno" placeholder="Mobile Number" maxlength="10" onkeypress="return isNumberKey(event)">
+            </div>
+            <br />
+            <div>
+                <div class="col-md-6" style="float:left">
+                    <input type="submit" class="btn btn-primary" id="btnSearch" name="txtSearch" value="Search" />
+                </div>
+                @if (ViewBag.totalcommission != null)
+                {
+                    <div style="float:right">
+                        <span>Total Commission Earned: @Html.Raw(ViewBag.totalcommission.ToString())</span>
+
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+
+@if (ViewData["grid"] != null)
+{
+    @Html.Raw(ViewData["grid"].ToString());
+}
+
+<script>
+    function isNumberKey(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+</script>
